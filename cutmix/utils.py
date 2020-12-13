@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from torch.nn.modules.module import Module
-from torch.nn import CrossEntropyLoss as cross_entropy
+import torch.nn.functional as F
 
 class CutMixCrossEntropyLoss(Module):
     def __init__(self, size_average=True,weights=None):
@@ -13,7 +13,7 @@ class CutMixCrossEntropyLoss(Module):
             target = torch.nn.functional.one_hot(target, num_classes=input.size(-1))
             target = target.float().cuda()
         
-        return cross_entropy(input, target, self.size_average,weight=self.weights)
+        return F.cross_entropy(input, target, self.size_average,weight=self.weights)
 
 
 # def cross_entropy(input, target, size_average=True):
