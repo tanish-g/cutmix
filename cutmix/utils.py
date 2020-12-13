@@ -13,7 +13,7 @@ class CutMixCrossEntropyLoss(Module):
             target = torch.nn.functional.one_hot(target, num_classes=input.size(-1))
             target = target.float().cuda()
         
-        return cross_entropy(input, target, self.size_average,weights=self.weights)
+        return cross_entropy(input, target, self.size_average,weight=self.weights)
 
 
 # def cross_entropy(input, target, size_average=True):
